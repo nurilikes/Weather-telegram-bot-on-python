@@ -32,7 +32,7 @@ class User(MessageHandler):
 
     def connectionMade(self):
         """
-        Обробляємо вдале підкулючення
+        обробляємо вдале підкулючення
 
         - поилаємо логін на сервер
         - запускаємо ввід/вивід
@@ -67,28 +67,28 @@ class Connector(ClientFactory):
         print("Connecting to the server...")  # сповіщення в консолі клієнта
 
     def clientConnectionFailed(self, connector, reason):
-        """Обработчик неудачного соединения (отключаем reactor)"""
+        """обробляємо невдале звернення(зупиняємо реактор)"""
 
-        print("Connection failed")  # уведомление в консоли клиента
-        reactor.callFromThread(reactor.stop)  # остановка реактора
+        print("Connection failed")  # сповіщення в консолі клієнта
+        reactor.callFromThread(reactor.stop)  # зупинка реактора
 
     def clientConnectionLost(self, connector, reason):
-        """Обработчик отключения соединения (отключаем reactor)"""
+        """обробляємо зупинку з'єднання"""
 
-        print("Disconnected from the server")  # уведомление в консоли клиента
-        reactor.callFromThread(reactor.stop)  # остановка реактора
+        print("Disconnected from the server")  # сповіщення в консолі клієнта
+        reactor.callFromThread(reactor.stop)  # зупинка реактора
 
 
 if __name__ == '__main__':
-    # запрашиваем имя пользователя для подключения
+    # просимо користувача ввести свій логін
     user_login = input("Your login: ")
 
-    # параметры соединения
+    # параметри з'єднання
     reactor.connectTCP(
         "localhost",
         7410,
         Connector(user_login)
     )
 
-    # запускаем реактор
+    # запускаємо реактор
     reactor.run()

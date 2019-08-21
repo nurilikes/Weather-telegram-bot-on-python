@@ -1,6 +1,5 @@
-#
 # Сервер для обробки повідомлень клієнтів
-#
+
 from twisted.internet import reactor
 from twisted.protocols.basic import LineOnlyReceiver
 from twisted.internet.protocol import ServerFactory, connectionDone

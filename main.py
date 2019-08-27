@@ -6,9 +6,11 @@
 import pyowm
 import telebot
 
+#API ключі
 TG_TOKEN = "896910396:AAF9CU3XVOnNDsXT1T35uF9C21uMsjvMpdU"
 owm = pyowm.OWM('ef2206ff5da67de63306d0b143e20872')
 
+#ініціалізація бота
 bot = telebot.TeleBot(TG_TOKEN)
 
 @bot.message_handler(content_types=['text'])
@@ -20,6 +22,7 @@ def start(message):
     elif message.text == "kis kis kis":
         bot.send_photo(message.from_user.id,"https://images.app.goo.gl/ZxSvid8W78cTx2yk7")
     else:
+        # перевіряємо погоду в місті
         city = message.text
         observation = owm.weather_at_place(city)
         w = observation.get_weather()
@@ -28,4 +31,5 @@ def start(message):
         bot.send_message(message.from_user.id,"Have a nice day :)")
 
 
+#метод для постійної перевірки ботом чату
 bot.polling(none_stop=True, interval=0)

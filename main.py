@@ -15,20 +15,16 @@ bot = telebot.TeleBot(TG_TOKEN)
 
 def get_weather_ico(weather_status):
     if weather_status == "clear sky":
-        photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/sunny.png","rb")
-        return photo
+        return "https://www.dropbox.com/s/vgmu1y5td37gomo/sunny.png?dl=0"
 
     elif weather_status == "broken clouds":
-        photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/cloud.png","rb")
-        return photo
+        return "https://www.dropbox.com/s/85y0wq8n5i854nr/cloud.png?dl=0"
 
     elif weather_status == "shower rain":
-        photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/rain.png","rb")
-        return photo
+        return "https://www.dropbox.com/s/javtm9jreh2nyyy/rain.png?dl=0"
 
     else:
-        photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/N_A.png","rb")
-        return photo
+        return "https://www.dropbox.com/s/sgmud1o7i06dr7x/N_A.png?dl=0"
 
 def choose_wear(temperature):
     if temperature >= 20:
@@ -61,13 +57,10 @@ def start(message):
         w = observation.get_weather()
         temperature=w.get_temperature('celsius')['temp']
         detailed_status = w.get_detailed_status()
-        bot.send_message(message.from_user.id,"In " + city + " city air temperature " + str(int(temperature)) + " degrees Celsius and " + detailed_status)
 
-        bot.send_message(message.from_user.id,choose_wear(temperature))
-
-        bot.send_photo(message.from_user.id,get_weather_ico(detailed_status))
-
-
+        bot.send_photo(
+            message.from_user.id,get_weather_ico(detailed_status),
+            "In " + city + " city air temperature " + str(int(temperature)) + " degrees Celsius and " + detailed_status + "\n" + choose_wear(temperature))
 
 #метод для постійної перевірки ботом чату
 bot.polling(none_stop=True, interval=0)

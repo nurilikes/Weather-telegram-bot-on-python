@@ -34,12 +34,18 @@ def start(message):
         bot.send_message(message.from_user.id,"In " + city + " city air temperature " + str(temperature) + " degrees Celsius and " + detailed_status)
 
         if detailed_status == "clear sky":
-            photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/sun.png","rb")
+            photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/sunny.png","rb")
             bot.send_photo(message.from_user.id,photo)
         elif detailed_status == "broken clouds":
             photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/cloud.png","rb")
             bot.send_photo(message.from_user.id,photo)
-        # TODO: make pictures for cloudy and rainy weather
+        elif detailed_status == "shower rain":
+            photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/rain.png","rb")
+            bot.send_photo(message.from_user.id,photo)
+        else:
+            photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/N_A.png","rb")
+            bot.send_photo(message.from_user.id,photo)
+
         bot.send_message(message.from_user.id,"Have a nice day :)")
 
 

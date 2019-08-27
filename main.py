@@ -39,7 +39,7 @@ def start(message):
         elif detailed_status == "broken clouds":
             photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/cloud.png","rb")
             bot.send_photo(message.from_user.id,photo)
-            
+        # TODO: make pictures for cloudy and rainy weather
         bot.send_message(message.from_user.id,"Have a nice day :)")
 
 

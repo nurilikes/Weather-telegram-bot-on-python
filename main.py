@@ -17,17 +17,29 @@ bot = telebot.TeleBot(TG_TOKEN)
 def start(message):
     if message.text == "/start":
         bot.send_message(message.from_user.id,"Hi, i`am weather bot.\nIf you have questions type /help\nIf you want to check weather type your city")
+
     elif message.text == "/help":
         bot.send_message(message.from_user.id,"Just type your city to get weather info")
+
     elif message.text == "kis kis kis":
         bot.send_photo(message.from_user.id,"https://images.app.goo.gl/ZxSvid8W78cTx2yk7")
+
     else:
         # перевіряємо погоду в місті
         city = message.text
         observation = owm.weather_at_place(city)
         w = observation.get_weather()
         temperature=w.get_temperature('celsius')['temp']
-        bot.send_message(message.from_user.id,"In " + city + " city air temperature " + str(temperature) + " degrees Celsius and " + w.get_detailed_status())
+        detailed_status = w.get_detailed_status()
+        bot.send_message(message.from_user.id,"In " + city + " city air temperature " + str(temperature) + " degrees Celsius and " + detailed_status)
+
+        if detailed_status == "clear sky":
+            photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/sun.png","rb")
+            bot.send_photo(message.from_user.id,photo)
+        elif detailed_status == "broken clouds":
+            photo = open("E:/Studie/PyPrograms/Chat projeckt/Python-chat/cloud.png","rb")
+            bot.send_photo(message.from_user.id,photo)
+            
         bot.send_message(message.from_user.id,"Have a nice day :)")
 
 

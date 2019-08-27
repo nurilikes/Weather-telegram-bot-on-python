@@ -17,3 +17,5 @@ telebot documentation(https://github.com/eternnoir/pyTelegramBotAPI#message-hand
 telegram documentation(https://core.telegram.org/bots/api#available-methods)
 
 pyowm documentation(https://pyowm.readthedocs.io/en/latest/)
+
+icons https://dribbble.com/shots/2721869-Free-weather-icons-source-file

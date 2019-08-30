@@ -52,15 +52,18 @@ def start(message):
 
     else:
         # перевіряємо погоду в місті
-        city = message.text
-        observation = owm.weather_at_place(city)
-        w = observation.get_weather()
-        temperature=w.get_temperature('celsius')['temp']
-        detailed_status = w.get_detailed_status()
+        try:
+            city = message.text
+            observation = owm.weather_at_place(city)
+            w = observation.get_weather()
+            temperature=w.get_temperature('celsius')['temp']
+            detailed_status = w.get_detailed_status()
 
-        bot.send_photo(
-            message.from_user.id,get_weather_ico(detailed_status),
-            "In " + city + " city air temperature " + str(int(temperature)) + " degrees Celsius and " + detailed_status + "\n" + choose_wear(temperature))
+            bot.send_photo(
+                message.from_user.id,get_weather_ico(detailed_status),
+                "In " + city + " city air temperature " + str(int(temperature)) + " degrees Celsius and " + detailed_status + "\n" + choose_wear(temperature))
+        except Exception:
+            bot.send_message(message.from_user.id,"Enter corect city!")
 
 #метод для постійної перевірки ботом чату
 bot.polling(none_stop=True, interval=0)

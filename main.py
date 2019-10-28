@@ -7,8 +7,8 @@ import pyowm
 import telebot
 
 #API ключі
-TG_TOKEN = "896910396:AAF9CU3XVOnNDsXT1T35uF9C21uMsjvMpdU"
-owm = pyowm.OWM('ef2206ff5da67de63306d0b143e20872')
+TG_TOKEN = ""
+owm = pyowm.OWM('')
 
 #ініціалізація бота
 bot = telebot.TeleBot(TG_TOKEN)

@@ -1,13 +1,9 @@
-# Telegram weather bot by
-# ©Bogdan Yatsiv(@cprograme)
-# 25.08.2019
-# for SoftServe IT academy final project
 
 import pyowm
 import telebot
 
 #API ключі
-TG_TOKEN = ""
+TG_TOKEN = "1629247479:AAHFkYhoIOY1VyaOWm4Y0b70m1DHYEMo05Q"
 owm = pyowm.OWM('')
 
 #ініціалізація бота
